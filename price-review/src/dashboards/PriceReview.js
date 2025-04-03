@@ -5,6 +5,7 @@ import { columnDefs, defaultColDef, rowData } from "../utils/gridUtils";
 import Navbar from "../components/Navbar";
 import VerticalTabs from "../components/VerticalTabs";
 import "../styles/global.css";
+import EditModal from "../components/EditModal";
 
 const { Text } = Typography;
 
@@ -23,7 +24,10 @@ const PriceReview = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const gridStyle = useMemo(() => ({ width: "100%", height: `${gridHeight}px` }), [gridHeight]);
+  const gridStyle = useMemo(
+    () => ({ width: "100%", height: `${gridHeight}px` }),
+    [gridHeight]
+  );
   const tabsHeight = containerHeight - gridHeight; // Adjust VerticalTabs dynamically
 
   const handleMouseDown = (e) => {
@@ -32,7 +36,13 @@ const PriceReview = () => {
     const startHeight = gridHeight;
 
     const onMouseMove = (event) => {
-      const newHeight = Math.max(minGridHeight, Math.min(containerHeight - minTabsHeight, startHeight + (event.clientY - startY)));
+      const newHeight = Math.max(
+        minGridHeight,
+        Math.min(
+          containerHeight - minTabsHeight,
+          startHeight + (event.clientY - startY)
+        )
+      );
       setGridHeight(newHeight);
     };
 
@@ -56,9 +66,18 @@ const PriceReview = () => {
     <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
       <Navbar />
 
-      <div style={{ flex: 1, position: "relative", padding: "20px", display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          flex: 1,
+          position: "relative",
+          padding: "20px",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         {loading && (
-          <div style={{
+          <div
+            style={{
               position: "absolute",
               top: "50%",
               left: "50%",
@@ -67,10 +86,13 @@ const PriceReview = () => {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              zIndex: 1000
-            }}>
+              zIndex: 1000,
+            }}
+          >
             <Spin size="large" />
-            <Text style={{ marginTop: "10px", fontSize: "16px", color: "#555" }}>
+            <Text
+              style={{ marginTop: "10px", fontSize: "16px", color: "#555" }}
+            >
               Loading Price Review...
             </Text>
           </div>
@@ -78,6 +100,7 @@ const PriceReview = () => {
 
         {!loading && (
           <>
+            <EditModal selectedRow={selectedRow} />
             <div className="ag-theme-alpine" style={gridStyle}>
               <AgGridReact
                 columnDefs={columnDefs}
