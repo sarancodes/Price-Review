@@ -1,6 +1,8 @@
 import React from "react";
-import { Layout, Menu, Avatar, Typography, Dropdown, Button } from "antd";
+import { Layout, Menu, Avatar, Dropdown, Button } from "antd";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom"; 
+import Title from "../img/title.png"; 
 
 const { Header } = Layout;
 
@@ -18,13 +20,15 @@ const menuItems = [
 const Navbar = () => {
   return (
     <Header className="flex items-center justify-between bg-white px-6 shadow-md">
-      {/* Left Section - Logo and Title */}
+      {/* Left Section - Clickable Logo */}
       <div className="flex items-center gap-4">
-        <img
-          src="https://mms.businesswire.com/media/20240115269111/en/1992831/5/ClearDemand_Logo_-_Transparent_Background.jpg?download=1"
-          alt="ClearDemand Logo"
-          className="h-10 w-auto"
-        />
+        <Link to="/"> {/* Wrap image inside Link */}
+          <img
+            src={Title}
+            alt="ClearDemand Logo"
+            className="h-10 w-auto cursor-pointer"
+          />
+        </Link>
       </div>
 
       {/* Center Section - Dropdown Menus */}

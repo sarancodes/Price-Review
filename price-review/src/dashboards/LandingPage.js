@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Card, Button } from "antd";
 import { RightOutlined } from "@ant-design/icons";
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar";
 
 const cardStyle = {
   backgroundColor: "#87A9DA", // Light Blue
@@ -35,11 +35,11 @@ const buttonStyle = {
 
 const modules = [
   { title: "Price Review", description: "View, manage, and export our price recommendations for regular and EDLP", link: "/price-review" },
-  { title: "Promotion Events", description: "Manage promotional events, associated forecasts, and view informative reports", link: "/promotion-events" },
-  { title: "Rule Management", description: "Utilize our industry-leading rules system to ensure forecast and pricing accuracy", link: "/rule-management" },
-  { title: "Rule Explorer", description: "View and evaluate your current rules and their impact on pricing recommendations", link: "/rule-explorer" },
-  { title: "Science Status", description: "View current progress on science and other data processing tasks", link: "/science-status" },
-  { title: "Buydown Explorer", description: "View and validate your vendor buydown data to ensure accuracy and compliance", link: "/buydown-explorer" },
+  { title: "Promotion Events", description: "Manage promotional events, associated forecasts, and view informative reports", link: "/" },
+  { title: "Rule Management", description: "Utilize our industry-leading rules system to ensure forecast and pricing accuracy", link: "/" },
+  { title: "Rule Explorer", description: "View and evaluate your current rules and their impact on pricing recommendations", link: "/" },
+  { title: "Science Status", description: "View current progress on science and other data processing tasks", link: "/" },
+  { title: "Buydown Explorer", description: "View and validate your vendor buydown data to ensure accuracy and compliance", link: "/" },
 ];
 
 const LandingPage = () => {
