@@ -83,18 +83,7 @@ const PriceReview = () => {
                 columnDefs={columnDefs}
                 defaultColDef={defaultColDef}
                 rowData={rowData}
-                sideBar={{
-                  toolPanels: [
-                    {
-                      id: "columns",
-                      labelDefault: "Columns",
-                      labelKey: "columns",
-                      iconKey: "columns",
-                      toolPanel: "agColumnsToolPanel",
-                    },
-                  ],
-                  defaultToolPanel: "columns", // Ensures it opens by default
-                }}
+                sideBar={"columns"}
               />
             </div>
 
