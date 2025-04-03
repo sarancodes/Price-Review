@@ -1,6 +1,6 @@
 # Price Review Dashboard
 
-![Price Review Dashboard](https://user-images.githubusercontent.com/your-image-placeholder.png)
+![Price Review Dashboard](https://github.com/sarancodes/Price-Review/blob/main/screenshot.png)
 
 ## 🚀 Live Demo
 🔗 **Deployed URL:** [Price Review App](https://price-review.vercel.app/)
@@ -58,12 +58,6 @@ npm start
 ```
 The app will be available at `http://localhost:3000/`.
 
-## 📸 Screenshots
-### 🔹 Interactive AG Grid Table with Resizable Feature
-![Grid Screenshot](https://user-images.githubusercontent.com/your-placeholder.png)
-
-### 🔹 Column Management Tool Panel
-![Sidebar Screenshot](https://user-images.githubusercontent.com/your-placeholder.png)
 
 
 
