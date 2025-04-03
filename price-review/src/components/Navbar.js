@@ -1,8 +1,8 @@
 import React from "react";
 import { Layout, Menu, Avatar, Dropdown, Button } from "antd";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom"; 
-import Title from "../img/title.png"; 
+import { Link } from "react-router-dom";
+import Title from "../img/title.png";
 
 const { Header } = Layout;
 
@@ -17,12 +17,26 @@ const menuItems = [
   { title: "File Manager", options: ["Upload", "Storage", "Logs"] },
 ];
 
+// Profile Dropdown Menu
+const profileMenu = (
+  <Menu>
+    <Menu.Item key="profile">
+      <Link to="/">Profile</Link>
+    </Menu.Item>
+    <Menu.Item key="logout">
+      <Link to="/">Logout</Link>
+    </Menu.Item>
+  </Menu>
+);
+
 const Navbar = () => {
   return (
     <Header className="flex items-center justify-between bg-white px-6 shadow-md">
       {/* Left Section - Clickable Logo */}
       <div className="flex items-center gap-4">
-        <Link to="/"> {/* Wrap image inside Link */}
+        <Link to="/">
+          {" "}
+          {/* Wrap image inside Link */}
           <img
             src={Title}
             alt="ClearDemand Logo"
@@ -53,9 +67,15 @@ const Navbar = () => {
         ))}
       </div>
 
-      {/* Right Section - Profile */}
+      {/* Right Section - Profile Dropdown */}
       <div className="flex items-center gap-4">
-        <Avatar size="large" icon={<UserOutlined />} />
+        <Dropdown overlay={profileMenu} trigger={["click"]}>
+          <Avatar
+            size="large"
+            src="https://as2.ftcdn.net/jpg/02/08/98/05/1000_F_208980504_njS12KTuZLQ3wQZaHLbKpSLFNu9rF6Hs.jpg"
+            className="cursor-pointer hover:shadow-lg transition-all"
+          />
+        </Dropdown>
       </div>
     </Header>
   );

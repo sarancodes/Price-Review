@@ -7,11 +7,12 @@ const cardStyle = {
   backgroundColor: "#87A9DA", // Light Blue
   color: "#FFFFFF",
   borderRadius: "10px",
-  minHeight: "150px",
+  minHeight: "180px",
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
   padding: "20px",
+  position: "relative",
 };
 
 const titleStyle = {
@@ -21,8 +22,8 @@ const titleStyle = {
 };
 
 const buttonStyle = {
-  width: "40px",
-  height: "40px",
+  width: "45px",
+  height: "45px",
   borderRadius: "50%",
   backgroundColor: "#FFFFFF",
   color: "#87A9DA",
@@ -30,7 +31,15 @@ const buttonStyle = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  alignSelf: "flex-start",
+  position: "absolute",
+  bottom: "15px",
+  right: "15px",
+  transition: "all 0.3s ease",
+};
+
+const buttonHoverStyle = {
+  backgroundColor: "#5C81C4", // Darker Blue
+  color: "#FFFFFF",
 };
 
 const modules = [
@@ -52,7 +61,12 @@ const LandingPage = () => {
             <Col span={8} key={index}>
               <Card title={<span style={titleStyle}>{module.title}</span>} style={cardStyle}>
                 <p>{module.description}</p>
-                <Button style={buttonStyle} href={module.link}>
+                <Button
+                  style={buttonStyle}
+                  href={module.link}
+                  onMouseEnter={(e) => Object.assign(e.target.style, buttonHoverStyle)}
+                  onMouseLeave={(e) => Object.assign(e.target.style, buttonStyle)}
+                >
                   <RightOutlined />
                 </Button>
               </Card>

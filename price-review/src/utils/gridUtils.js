@@ -6,6 +6,26 @@ export const defaultColDef = {
   suppressHeaderContextMenu: true,
 };
 
+export const reviewColumnDefs = [
+  {
+    field: "Regular Multiple",
+  },
+  {
+    field: "Regular Price",
+  },
+  {
+    field: "Type",
+  },
+];
+
+export const reviewRowData = [
+  {
+    "Regular Multiple": 1,
+    "Regular Price": "$2.99",
+    Type: "Regular",
+  },
+];
+
 export const columnDefs = [
   { field: "UPC", filter: "agTextColumnFilter", pinned: "left" },
   { field: "Product Desc", filter: "agTextColumnFilter", pinned: "left" },
@@ -17,27 +37,36 @@ export const columnDefs = [
   { field: "Sub Category", filter: "agTextColumnFilter" },
   { field: "Zone Name", filter: "agTextColumnFilter" },
   { field: "Zone", filter: "agTextColumnFilter" },
-  { field:"Scenario",filter:"agTextColumnFilter"},
-  { field:"Job Id",filter:"agTextColumnFilter",
-    cellRenderer:(params) => {
-      return (
-        <div style={{color:"#0000FF"}}>{params?.value}</div>
-      );
-    }
+  { field: "Scenario", filter: "agTextColumnFilter" },
+  {
+    field: "Job Id",
+    filter: "agTextColumnFilter",
+    cellRenderer: (params) => {
+      return <div style={{ color: "#0000FF" }}>{params?.value}</div>;
+    },
   },
-  { field:"Brand",filter:"agTextColumnFilter"},
-  {field:"UOM",filter:"agTextColumnFilter"},
-  { field:'Cur Price',filter:"agNumberColumnFilter"},
+  { field: "Brand", filter: "agTextColumnFilter" },
+  { field: "UOM", filter: "agTextColumnFilter" },
+  { field: "Cur Price", filter: "agNumberColumnFilter" },
 
-  { field:'Rec Price',filter:"agNumberColumnFilter",
+  {
+    field: "Rec Price",
+    filter: "agNumberColumnFilter",
     cellRenderer: (params) => {
       const value = params?.value;
       const isDown = value === 0;
-    
+
       return (
-        <div style={{ color: isDown ? "red" : "#32CD32", display: "flex", alignItems: "center", gap: "5px" }}>
-          <i 
-            className={`fa-solid ${isDown ? "fa-arrow-down" : "fa-arrow-up"}`} 
+        <div
+          style={{
+            color: isDown ? "red" : "#32CD32",
+            display: "flex",
+            alignItems: "center",
+            gap: "5px",
+          }}
+        >
+          <i
+            className={`fa-solid ${isDown ? "fa-arrow-down" : "fa-arrow-up"}`}
             style={{ color: isDown ? "red" : "#32CD32" }}
           ></i>
           ${value}
@@ -45,16 +74,25 @@ export const columnDefs = [
       );
     },
   },
-  { field:"Rec Mult",filter:"agNumberColumnFilter"},
-  { field:'Export Price',filter:"agNumberColumnFilter",
+  { field: "Rec Mult", filter: "agNumberColumnFilter" },
+  {
+    field: "Export Price",
+    filter: "agNumberColumnFilter",
     cellRenderer: (params) => {
       const value = params?.value;
       const isDown = value === 0;
-    
+
       return (
-        <div style={{ color: isDown ? "red" : "#32CD32", display: "flex", alignItems: "center", gap: "5px" }}>
-          <i 
-            className={`fa-solid ${isDown ? "fa-arrow-down" : "fa-arrow-up"}`} 
+        <div
+          style={{
+            color: isDown ? "red" : "#32CD32",
+            display: "flex",
+            alignItems: "center",
+            gap: "5px",
+          }}
+        >
+          <i
+            className={`fa-solid ${isDown ? "fa-arrow-down" : "fa-arrow-up"}`}
             style={{ color: isDown ? "red" : "#32CD32" }}
           ></i>
           ${value}
@@ -62,27 +100,37 @@ export const columnDefs = [
       );
     },
   },
-  { field:"Export Mult",filter:"agNumberColumnFilter",},
-  
+  { field: "Export Mult", filter: "agNumberColumnFilter" },
+
   {
     field: "Status",
     filter: "agTextColumnFilter",
-    cellStyle: { display: "flex", alignItems: "center", justifyContent: "center" },
+    cellStyle: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
     cellRenderer: (params) => {
-      const value = params?.value
+      const value = params?.value;
       const isApproved = value === "Approved";
-  
+
       return (
         <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-          <i className={isApproved ? "fa-solid fa-check-circle" : "fa-solid fa-times-circle"} style={{ color: isApproved ? "#32CD32" : "red" }}></i>
+          <i
+            className={
+              isApproved
+                ? "fa-solid fa-check-circle"
+                : "fa-solid fa-times-circle"
+            }
+            style={{ color: isApproved ? "#32CD32" : "red" }}
+          ></i>
           {/* {value} */}
         </div>
       );
     },
   },
-  
-  
-  { field:"Run Mode",filter:"agTextColumnFilter"},
+
+  { field: "Run Mode", filter: "agTextColumnFilter" },
   { field: "Price Fam id", filter: "agTextColumnFilter" },
   { field: "# of products", filter: "agNumberColumnFilter" },
   { field: "Export Rev", filter: "agNumberColumnFilter" },
@@ -104,59 +152,94 @@ export const columnDefs = [
   // { field: "Competitor Price Priority2", filter: "agNumberColumnFilter" },
   // { field: "Competitor Priority3", filter: "agTextColumnFilter" },
   // { field: "Competitor Price Priority3", filter: "agNumberColumnFilter" },
-  { field: "Rev Change +5%", filter: "agNumberColumnFilter",
+  {
+    field: "Rev Change +5%",
+    filter: "agNumberColumnFilter",
     cellRenderer: (params) => {
-      const value = params?.value
+      const value = params?.value;
       const isHigher = value > 100;
-  
+
       return (
-        <div style={{ display: "flex", color: isHigher ? "#32CD32" : "red", alignItems: "center", gap: "5px" }}>
+        <div
+          style={{
+            display: "flex",
+            color: isHigher ? "#32CD32" : "red",
+            alignItems: "center",
+            gap: "5px",
+          }}
+        >
           ${value}
         </div>
       );
     },
-   },
-  { field: "Profit Change +5%", filter: "agNumberColumnFilter",
+  },
+  {
+    field: "Profit Change +5%",
+    filter: "agNumberColumnFilter",
     cellRenderer: (params) => {
-      const value = params?.value
+      const value = params?.value;
       const isHigher = value > 100;
-  
+
       return (
-        <div style={{ display: "flex", color: isHigher ? "#32CD32" : "red", alignItems: "center", gap: "5px" }}>
+        <div
+          style={{
+            display: "flex",
+            color: isHigher ? "#32CD32" : "red",
+            alignItems: "center",
+            gap: "5px",
+          }}
+        >
           ${value}
         </div>
       );
     },
-   },
-  { field: "Rev Change -5%", filter: "agNumberColumnFilter",
+  },
+  {
+    field: "Rev Change -5%",
+    filter: "agNumberColumnFilter",
     cellRenderer: (params) => {
-      const value = params?.value
+      const value = params?.value;
       const isHigher = value > 100;
-  
+
       return (
-        <div style={{ display: "flex", color: isHigher ? "#32CD32" : "red", alignItems: "center", gap: "5px" }}>
+        <div
+          style={{
+            display: "flex",
+            color: isHigher ? "#32CD32" : "red",
+            alignItems: "center",
+            gap: "5px",
+          }}
+        >
           ${value}
         </div>
       );
     },
-   },
-  { field: "Profit Change -5%", filter: "agNumberColumnFilter",
+  },
+  {
+    field: "Profit Change -5%",
+    filter: "agNumberColumnFilter",
     cellRenderer: (params) => {
-      const value = params?.value
+      const value = params?.value;
       const isHigher = value > 100;
-  
+
       return (
-        <div style={{ display: "flex", color: isHigher ? "#32CD32" : "red", alignItems: "center", gap: "5px" }}>
+        <div
+          style={{
+            display: "flex",
+            color: isHigher ? "#32CD32" : "red",
+            alignItems: "center",
+            gap: "5px",
+          }}
+        >
           ${value}
         </div>
       );
     },
-   },
-  { field: "Val Chg 5% Decrease", filter: "agNumberColumnFilter", },
+  },
+  { field: "Val Chg 5% Decrease", filter: "agNumberColumnFilter" },
   { field: "Wkly Bskt Ct", filter: "agNumberColumnFilter" },
   { field: "Ela Price", filter: "agNumberColumnFilter" },
 ];
-
 
 export const rowData = [
   {
@@ -170,16 +253,16 @@ export const rowData = [
     "Sub Category": "Laptops",
     "Zone Name": "West Zone",
     Zone: "WZ-01",
-    "Scenario": "Base",
+    Scenario: "Base",
     "Job Id": "J56789",
     Brand: "XYZTech",
     UOM: "Each",
     "Cur Price": 999.99,
-    "Rec Price": 0, // Will show red down arrow
+    "Rec Price": 0,
     "Rec Mult": 1.2,
-    "Export Price": 1200.5, // Will show green up arrow
+    "Export Price": 1200.5,
     "Export Mult": 1.5,
-    Status: "Approved", // Green check icon
+    Status: "Approved",
     "Run Mode": "Auto",
     "Price Fam id": "PF789",
     "# of products": 500,
@@ -192,10 +275,10 @@ export const rowData = [
     "Markdown Budget": 5000,
     "Markdown Variance": 250,
     "Item Add Date": "2024-11-01",
-    "Rev Change +5%": 200, // Green
-    "Profit Change +5%": 50, // Red
-    "Rev Change -5%": 80, // Red
-    "Profit Change -5%": 120, // Green
+    "Rev Change +5%": 200,
+    "Profit Change +5%": 50,
+    "Rev Change -5%": 80,
+    "Profit Change -5%": 120,
     "Val Chg 5% Decrease": -5,
     "Wkly Bskt Ct": 1500,
     "Ela Price": 2.1,
@@ -211,16 +294,16 @@ export const rowData = [
     "Sub Category": "Smartphones",
     "Zone Name": "East Zone",
     Zone: "EZ-02",
-    "Scenario": "New Launch",
+    Scenario: "New Launch",
     "Job Id": "J67890",
     Brand: "ABC Mobile",
     UOM: "Each",
     "Cur Price": 799.99,
-    "Rec Price": 999.99, // Green up arrow
+    "Rec Price": 999.99,
     "Rec Mult": 1.3,
-    "Export Price": 0, // Red down arrow
+    "Export Price": 0,
     "Export Mult": 1.6,
-    Status: "Rejected", // Red cross icon
+    Status: "Rejected",
     "Run Mode": "Manual",
     "Price Fam id": "PF456",
     "# of products": 300,
@@ -233,10 +316,10 @@ export const rowData = [
     "Markdown Budget": 4000,
     "Markdown Variance": 180,
     "Item Add Date": "2024-10-15",
-    "Rev Change +5%": 50, // Red
-    "Profit Change +5%": 200, // Green
-    "Rev Change -5%": 110, // Green
-    "Profit Change -5%": 60, // Red
+    "Rev Change +5%": 50,
+    "Profit Change +5%": 200,
+    "Rev Change -5%": 110,
+    "Profit Change -5%": 60,
     "Val Chg 5% Decrease": -10,
     "Wkly Bskt Ct": 1200,
     "Ela Price": 1.9,
@@ -252,16 +335,16 @@ export const rowData = [
     "Sub Category": "Audio",
     "Zone Name": "South Zone",
     Zone: "SZ-03",
-    "Scenario": "Discount",
+    Scenario: "Discount",
     "Job Id": "J78901",
     Brand: "SoundTech",
     UOM: "Each",
     "Cur Price": 199.99,
-    "Rec Price": 210.99, // Green up arrow
+    "Rec Price": 210.99,
     "Rec Mult": 1.1,
-    "Export Price": 0, // Red down arrow
+    "Export Price": 0,
     "Export Mult": 1.4,
-    Status: "Approved", // Green check icon
+    Status: "Approved",
     "Run Mode": "Auto",
     "Price Fam id": "PF123",
     "# of products": 400,
@@ -274,10 +357,10 @@ export const rowData = [
     "Markdown Budget": 3000,
     "Markdown Variance": 160,
     "Item Add Date": "2025-02-01",
-    "Rev Change +5%": 120, // Green
-    "Profit Change +5%": 90, // Red
-    "Rev Change -5%": 95, // Red
-    "Profit Change -5%": 140, // Green
+    "Rev Change +5%": 120,
+    "Profit Change +5%": 90,
+    "Rev Change -5%": 95,
+    "Profit Change -5%": 140,
     "Val Chg 5% Decrease": -7,
     "Wkly Bskt Ct": 1100,
     "Ela Price": 1.7,
@@ -293,16 +376,16 @@ export const rowData = [
     "Sub Category": "Smartwatches",
     "Zone Name": "North Zone",
     Zone: "NZ-04",
-    "Scenario": "Clearance",
+    Scenario: "Clearance",
     "Job Id": "J89012",
     Brand: "WearTech",
     UOM: "Each",
     "Cur Price": 249.99,
-    "Rec Price": 0, // Red down arrow
+    "Rec Price": 0,
     "Rec Mult": 1.25,
-    "Export Price": 275.99, // Green up arrow
+    "Export Price": 275.99,
     "Export Mult": 1.55,
-    Status: "Rejected", // Red cross icon
+    Status: "Rejected",
     "Run Mode": "Manual",
     "Price Fam id": "PF789",
     "# of products": 250,
@@ -315,34 +398,342 @@ export const rowData = [
     "Markdown Budget": 3500,
     "Markdown Variance": 140,
     "Item Add Date": "2024-09-20",
-    "Rev Change +5%": 75, // Red
-    "Profit Change +5%": 190, // Green
-    "Rev Change -5%": 115, // Green
-    "Profit Change -5%": 85, // Red
+    "Rev Change +5%": 75,
+    "Profit Change +5%": 190,
+    "Rev Change -5%": 115,
+    "Profit Change -5%": 85,
     "Val Chg 5% Decrease": -9,
     "Wkly Bskt Ct": 1300,
     "Ela Price": 1.6,
-  }
+  },
+  {
+    UPC: "555555555555",
+    "Product Desc": "Wireless Mouse",
+    "Vendor Cost Zone Desc": "Canada",
+    "Vendor Id": "V7005",
+    "# of Stores": 120,
+    Department: "Electronics",
+    Category: "Accessories",
+    "Sub Category": "Peripherals",
+    "Zone Name": "Central Zone",
+    Zone: "CZ-05",
+    Scenario: "Promotion",
+    "Job Id": "J90123",
+    Brand: "TechGear",
+    UOM: "Each",
+    "Cur Price": 49.99,
+    "Rec Price": 45.99,
+    "Rec Mult": 1.1,
+    "Export Price": 55.99,
+    "Export Mult": 1.2,
+    Status: "Approved",
+    "Run Mode": "Auto",
+    "Price Fam id": "PF890",
+    "# of products": 320,
+    "Export Rev": 40000,
+    "Rec Profit Elast Chg": 2.1,
+    "Markdown Amount": 5,
+    "End Date": "2025-06-10",
+    "Capture Rate": 78.3,
+    "Exit Date": "2025-06-25",
+    "Markdown Budget": 2500,
+    "Markdown Variance": 100,
+    "Item Add Date": "2025-01-15",
+    "Rev Change +5%": 85,
+    "Profit Change +5%": 120,
+    "Rev Change -5%": 70,
+    "Profit Change -5%": 90,
+    "Val Chg 5% Decrease": -4,
+    "Wkly Bskt Ct": 900,
+    "Ela Price": 1.4,
+  },
+  {
+    UPC: "666666666666",
+    "Product Desc": "Gaming Monitor",
+    "Vendor Cost Zone Desc": "USA",
+    "Vendor Id": "V8006",
+    "# of Stores": 180,
+    Department: "Electronics",
+    Category: "Displays",
+    "Sub Category": "Monitors",
+    "Zone Name": "South Zone",
+    Zone: "SZ-06",
+    Scenario: "Seasonal Sale",
+    "Job Id": "J01234",
+    Brand: "UltraView",
+    UOM: "Each",
+    "Cur Price": 299.99,
+    "Rec Price": 0,
+    "Rec Mult": 1.3,
+    "Export Price": 320.99,
+    "Export Mult": 1.45,
+    Status: "Approved",
+    "Run Mode": "Manual",
+    "Price Fam id": "PF901",
+    "# of products": 200,
+    "Export Rev": 72000,
+    "Rec Profit Elast Chg": 2.9,
+    "Markdown Amount": 10,
+    "End Date": "2025-11-01",
+    "Capture Rate": 85.7,
+    "Exit Date": "2025-11-20",
+    "Markdown Budget": 5000,
+    "Markdown Variance": 200,
+    "Item Add Date": "2024-12-01",
+    "Rev Change +5%": 95,
+    "Profit Change +5%": 140,
+    "Rev Change -5%": 75,
+    "Profit Change -5%": 110,
+    "Val Chg 5% Decrease": -6,
+    "Wkly Bskt Ct": 1050,
+    "Ela Price": 1.8,
+  },
+  {
+    UPC: "777777777777",
+    "Product Desc": "Mechanical Keyboard",
+    "Vendor Cost Zone Desc": "UK",
+    "Vendor Id": "V9007",
+    "# of Stores": 140,
+    Department: "Electronics",
+    Category: "Accessories",
+    "Sub Category": "Keyboards",
+    "Zone Name": "West Zone",
+    Zone: "WZ-07",
+    Scenario: "Limited Edition",
+    "Job Id": "J12345",
+    Brand: "ClickTech",
+    UOM: "Each",
+    "Cur Price": 129.99,
+    "Rec Price": 119.99,
+    "Rec Mult": 1.15,
+    "Export Price": 139.99,
+    "Export Mult": 1.25,
+    Status: "Rejected",
+    "Run Mode": "Auto",
+    "Price Fam id": "PF012",
+    "# of products": 280,
+    "Export Rev": 55000,
+    "Rec Profit Elast Chg": 3.0,
+    "Markdown Amount": 8,
+    "End Date": "2025-07-15",
+    "Capture Rate": 80.4,
+    "Exit Date": "2025-07-30",
+    "Markdown Budget": 3200,
+    "Markdown Variance": 130,
+    "Item Add Date": "2025-03-01",
+    "Rev Change +5%": 90,
+    "Profit Change +5%": 110,
+    "Rev Change -5%": 65,
+    "Profit Change -5%": 95,
+    "Val Chg 5% Decrease": -5,
+    "Wkly Bskt Ct": 980,
+    "Ela Price": 1.6,
+  },
+  {
+    UPC: "888888888888",
+    "Product Desc": "Noise Cancelling Headphones",
+    "Vendor Cost Zone Desc": "Germany",
+    "Vendor Id": "V10008",
+    "# of Stores": 110,
+    Department: "Electronics",
+    Category: "Audio",
+    "Sub Category": "Headphones",
+    "Zone Name": "East Zone",
+    Zone: "EZ-08",
+    Scenario: "New Arrival",
+    "Job Id": "J23456",
+    Brand: "AudioMax",
+    UOM: "Each",
+    "Cur Price": 249.99,
+    "Rec Price": 269.99,
+    "Rec Mult": 1.1,
+    "Export Price": 0,
+    "Export Mult": 1.3,
+    Status: "Approved",
+    "Run Mode": "Manual",
+    "Price Fam id": "PF234",
+    "# of products": 220,
+    "Export Rev": 67000,
+    "Rec Profit Elast Chg": 2.7,
+    "Markdown Amount": 7,
+    "End Date": "2025-10-01",
+    "Capture Rate": 87.2,
+    "Exit Date": "2025-10-20",
+    "Markdown Budget": 4000,
+    "Markdown Variance": 180,
+    "Item Add Date": "2025-04-01",
+    "Rev Change +5%": 105,
+    "Profit Change +5%": 150,
+    "Rev Change -5%": 85,
+    "Profit Change -5%": 125,
+    "Val Chg 5% Decrease": -7,
+    "Wkly Bskt Ct": 1150,
+    "Ela Price": 1.9,
+  },
+  {
+    UPC: "999999999999",
+    "Product Desc": "4K Streaming Stick",
+    "Vendor Cost Zone Desc": "Japan",
+    "Vendor Id": "V11009",
+    "# of Stores": 130,
+    Department: "Electronics",
+    Category: "Streaming Devices",
+    "Sub Category": "Media Players",
+    "Zone Name": "West Zone",
+    Zone: "WZ-09",
+    Scenario: "Festive Offer",
+    "Job Id": "J34567",
+    Brand: "StreamMax",
+    UOM: "Each",
+    "Cur Price": 59.99,
+    "Rec Price": 54.99,
+    "Rec Mult": 1.05,
+    "Export Price": 65.99,
+    "Export Mult": 1.15,
+    Status: "Approved",
+    "Run Mode": "Auto",
+    "Price Fam id": "PF345",
+    "# of products": 300,
+    "Export Rev": 48000,
+    "Rec Profit Elast Chg": 2.5,
+    "Markdown Amount": 5,
+    "End Date": "2025-12-15",
+    "Capture Rate": 91.5,
+    "Exit Date": "2025-12-31",
+    "Markdown Budget": 3500,
+    "Markdown Variance": 160,
+    "Item Add Date": "2025-06-01",
+    "Rev Change +5%": 100,
+    "Profit Change +5%": 140,
+    "Rev Change -5%": 80,
+    "Profit Change -5%": 120,
+    "Val Chg 5% Decrease": -6,
+    "Wkly Bskt Ct": 970,
+    "Ela Price": 1.7,
+  },
+  {
+    UPC: "101010101010",
+    "Product Desc": "Smart Home Hub",
+    "Vendor Cost Zone Desc": "India",
+    "Vendor Id": "V12010",
+    "# of Stores": 170,
+    Department: "Electronics",
+    Category: "Smart Home",
+    "Sub Category": "Hubs",
+    "Zone Name": "Central Zone",
+    Zone: "CZ-10",
+    Scenario: "New Launch",
+    "Job Id": "J45678",
+    Brand: "HomeTech",
+    UOM: "Each",
+    "Cur Price": 129.99,
+    "Rec Price": 149.99,
+    "Rec Mult": 1.15,
+    "Export Price": 0,
+    "Export Mult": 1.25,
+    Status: "Rejected",
+    "Run Mode": "Manual",
+    "Price Fam id": "PF456",
+    "# of products": 270,
+    "Export Rev": 62000,
+    "Rec Profit Elast Chg": 3.1,
+    "Markdown Amount": 9,
+    "End Date": "2025-09-10",
+    "Capture Rate": 85.3,
+    "Exit Date": "2025-09-25",
+    "Markdown Budget": 3100,
+    "Markdown Variance": 140,
+    "Item Add Date": "2025-05-01",
+    "Rev Change +5%": 95,
+    "Profit Change +5%": 130,
+    "Rev Change -5%": 70,
+    "Profit Change -5%": 110,
+    "Val Chg 5% Decrease": -5,
+    "Wkly Bskt Ct": 1020,
+    "Ela Price": 1.8,
+  },
+  {
+    UPC: "111111111112",
+    "Product Desc": "Portable Speaker",
+    "Vendor Cost Zone Desc": "France",
+    "Vendor Id": "V13011",
+    "# of Stores": 160,
+    Department: "Electronics",
+    Category: "Audio",
+    "Sub Category": "Speakers",
+    "Zone Name": "North Zone",
+    Zone: "NZ-11",
+    Scenario: "Discount",
+    "Job Id": "J56789",
+    Brand: "SoundBoom",
+    UOM: "Each",
+    "Cur Price": 89.99,
+    "Rec Price": 79.99,
+    "Rec Mult": 1.08,
+    "Export Price": 99.99,
+    "Export Mult": 1.18,
+    Status: "Approved",
+    "Run Mode": "Auto",
+    "Price Fam id": "PF567",
+    "# of products": 230,
+    "Export Rev": 45000,
+    "Rec Profit Elast Chg": 2.3,
+    "Markdown Amount": 6,
+    "End Date": "2025-07-20",
+    "Capture Rate": 89.1,
+    "Exit Date": "2025-08-05",
+    "Markdown Budget": 2900,
+    "Markdown Variance": 120,
+    "Item Add Date": "2025-02-15",
+    "Rev Change +5%": 88,
+    "Profit Change +5%": 125,
+    "Rev Change -5%": 72,
+    "Profit Change -5%": 100,
+    "Val Chg 5% Decrease": -5,
+    "Wkly Bskt Ct": 1100,
+    "Ela Price": 1.5,
+  },
+  {
+    UPC: "121212121212",
+    "Product Desc": "Wireless Charging Pad",
+    "Vendor Cost Zone Desc": "Brazil",
+    "Vendor Id": "V14012",
+    "# of Stores": 100,
+    Department: "Electronics",
+    Category: "Accessories",
+    "Sub Category": "Charging",
+    "Zone Name": "South Zone",
+    Zone: "SZ-12",
+    Scenario: "Clearance",
+    "Job Id": "J67890",
+    Brand: "ChargeIt",
+    UOM: "Each",
+    "Cur Price": 39.99,
+    "Rec Price": 0,
+    "Rec Mult": 1.05,
+    "Export Price": 45.99,
+    "Export Mult": 1.12,
+    Status: "Rejected",
+    "Run Mode": "Manual",
+    "Price Fam id": "PF678",
+    "# of products": 190,
+    "Export Rev": 32000,
+    "Rec Profit Elast Chg": 2.0,
+    "Markdown Amount": 4,
+    "End Date": "2025-06-25",
+    "Capture Rate": 76.8,
+    "Exit Date": "2025-07-10",
+    "Markdown Budget": 2200,
+    "Markdown Variance": 90,
+    "Item Add Date": "2025-01-10",
+    "Rev Change +5%": 65,
+    "Profit Change +5%": 95,
+    "Rev Change -5%": 50,
+    "Profit Change -5%": 85,
+    "Val Chg 5% Decrease": -3,
+    "Wkly Bskt Ct": 870,
+    "Ela Price": 1.3,
+  },
 ];
 
 
-export const reviewColumnDefs = [
-  {
-    field:"Regular Multiple",
-  },
-  {
-    field:"Regular Price",
-  },
-  {
-    field:"Type"
-  }
-]
-
-export const reviewRowData = [
-  {
-    "Regular Multiple": 1,
-    "Regular Price": "$2.99",
-    "Type": "Regular"
-  },
-  
-]
