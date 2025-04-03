@@ -11,8 +11,8 @@ const { Text } = Typography;
 
 const PriceReview = () => {
   const [loading, setLoading] = useState(true);
-  const [containerHeight, setContainerHeight] = useState(610); // Total area for both Grid & Tabs
-  const [gridHeight, setGridHeight] = useState(400);
+  const [containerHeight, setContainerHeight] = useState(614); // Total area for both Grid & Tabs
+  const [gridHeight, setGridHeight] = useState(300);
   const [selectedRow, setSelectedRow] = useState(null);
   const minGridHeight = 200;
   const minTabsHeight = 200; // Minimum height for VerticalTabs
