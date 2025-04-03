@@ -31,12 +31,13 @@ const profileMenu = (
 
 const Navbar = () => {
   return (
-    <Header className="flex items-center justify-between bg-white px-6 shadow-md">
+    <Header 
+      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-white px-6 shadow-md"
+      style={{ height: "64px" }} // Ensure it doesn't collapse
+    >
       {/* Left Section - Clickable Logo */}
       <div className="flex items-center gap-4">
         <Link to="/">
-          {" "}
-          {/* Wrap image inside Link */}
           <img
             src={Title}
             alt="ClearDemand Logo"

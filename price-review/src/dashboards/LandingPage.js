@@ -55,7 +55,7 @@ const LandingPage = () => {
   return (
     <>
       <Navbar/>
-      <div style={{ padding: "20px" }}>
+      <div style={{ padding: "20px", marginTop: "64px" }}>
         <Row gutter={[16, 16]}>
           {modules.map((module, index) => (
             <Col span={8} key={index}>
