@@ -3,15 +3,18 @@ import { Spin, Typography } from "antd";
 import { AgGridReact } from "ag-grid-react";
 import { columnDefs, defaultColDef, rowData } from "../utils/gridUtils";
 import Navbar from "../components/Navbar";
-import "../styles/global.css"; 
-
+import VerticalTabs from "../components/VerticalTabs";
+import "../styles/global.css";
 
 const { Text } = Typography;
 
 const PriceReview = () => {
   const [loading, setLoading] = useState(true);
-  const [gridHeight, setGridHeight] = useState(400); 
-  const minGridHeight = 200; 
+  const [containerHeight, setContainerHeight] = useState(610); // Total area for both Grid & Tabs
+  const [gridHeight, setGridHeight] = useState(400);
+  const [selectedRow, setSelectedRow] = useState(null);
+  const minGridHeight = 200;
+  const minTabsHeight = 200; // Minimum height for VerticalTabs
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -20,22 +23,16 @@ const PriceReview = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const gridStyle = useMemo(
-    () => ({ width: "100%", height: `${gridHeight}px` }),
-    [gridHeight]
-  );
+  const gridStyle = useMemo(() => ({ width: "100%", height: `${gridHeight}px` }), [gridHeight]);
+  const tabsHeight = containerHeight - gridHeight; // Adjust VerticalTabs dynamically
 
-  // Handle Drag to Resize
   const handleMouseDown = (e) => {
     e.preventDefault();
     const startY = e.clientY;
     const startHeight = gridHeight;
 
     const onMouseMove = (event) => {
-      const newHeight = Math.max(
-        minGridHeight,
-        startHeight + (event.clientY - startY)
-      );
+      const newHeight = Math.max(minGridHeight, Math.min(containerHeight - minTabsHeight, startHeight + (event.clientY - startY)));
       setGridHeight(newHeight);
     };
 
@@ -48,14 +45,20 @@ const PriceReview = () => {
     document.addEventListener("mouseup", onMouseUp);
   };
 
+  const onSelectionChanged = (event) => {
+    const selectedNode = event.api.getSelectedNodes()[0];
+    if (selectedNode) {
+      setSelectedRow(selectedNode.data);
+    }
+  };
+
   return (
     <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
       <Navbar />
 
-      <div style={{ flex: 1, position: "relative", padding: "20px" }}>
+      <div style={{ flex: 1, position: "relative", padding: "20px", display: "flex", flexDirection: "column" }}>
         {loading && (
-          <div
-            style={{
+          <div style={{
               position: "absolute",
               top: "50%",
               left: "50%",
@@ -64,13 +67,10 @@ const PriceReview = () => {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              zIndex: 1000,
-            }}
-          >
+              zIndex: 1000
+            }}>
             <Spin size="large" />
-            <Text
-              style={{ marginTop: "10px", fontSize: "16px", color: "#555" }}
-            >
+            <Text style={{ marginTop: "10px", fontSize: "16px", color: "#555" }}>
               Loading Price Review...
             </Text>
           </div>
@@ -83,6 +83,8 @@ const PriceReview = () => {
                 columnDefs={columnDefs}
                 defaultColDef={defaultColDef}
                 rowData={rowData}
+                rowSelection="single"
+                onSelectionChanged={onSelectionChanged}
                 sideBar={{
                   toolPanels: [
                     {
@@ -92,22 +94,19 @@ const PriceReview = () => {
                       iconKey: "columns",
                       toolPanel: "agColumnsToolPanel",
                     },
-                    // {
-                    //   id: "filters",
-                    //   labelDefault: "Filters",
-                    //   labelKey: "filters",
-                    //   iconKey: "filter",
-                    //   toolPanel: "agFiltersToolPanel",
-                    // },
                   ],
                   defaultToolPanel: "",
                 }}
               />
             </div>
 
-            {/* Resizable Bar */}
             <div className="resizable-bar" onMouseDown={handleMouseDown}>
               <div className="resizable-bar-handle" />
+            </div>
+
+            {/* Dynamic Height for VerticalTabs */}
+            <div style={{ height: `${tabsHeight}px`, overflow: "auto" }}>
+              <VerticalTabs selectedRow={selectedRow} />
             </div>
           </>
         )}

@@ -325,3 +325,24 @@ export const rowData = [
   }
 ];
 
+
+export const reviewColumnDefs = [
+  {
+    field:"Regular Multiple",
+  },
+  {
+    field:"Regular Price",
+  },
+  {
+    field:"Type"
+  }
+]
+
+export const reviewRowData = [
+  {
+    "Regular Multiple": 1,
+    "Regular Price": "$2.99",
+    "Type": "Regular"
+  },
+  
+]
